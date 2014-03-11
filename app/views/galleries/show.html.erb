@@ -1,0 +1,20 @@
+<h1><%= @gallery.name %></h1>
+<div>
+<%= link_to "Home", "/" %>
+</div>
+<hr>
+<div>
+<%= link_to "Edit", edit_gallery_path(@gallery) %>
+
+<%= link_to "Delete", @gallery, method: :delete %>
+<%= link_to "New Image", new_gallery_image_path(@gallery) %>
+</div>
+        <% @gallery.images.each do |image| %>
+            <div>
+            <%= image.name %>
+            <%= image.description %>
+            </div>
+            <div>
+            <img src="<%= image.url %>"> </img>
+            </div>           
+        <% end %>
