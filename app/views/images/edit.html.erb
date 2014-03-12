@@ -1,1 +1,8 @@
-edit.html.erb
+<h1>Edit Gallery</h1>
+<hr>
+<%= form_for(@image) do |form| %>
+  <%= form.text_field :name %>
+  <%= form.text_field :description %>
+  <%= form.text_field :url %>
+  <%= form.submit "Update Image" %>
+<% end %>  

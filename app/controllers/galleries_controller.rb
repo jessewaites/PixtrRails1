@@ -17,16 +17,12 @@ def create
   redirect_to gallery_path(gallery)
 end
 
-def gallery_params
-  params.require(:gallery).permit(:name)
-end
-
 def edit
-  gallery = Gallery.find(gallery_params)
+  @gallery = Gallery.find(params[:id])
 end
 
 def update
-  @gallery = Gallery.find(params[:id])
+  gallery = Gallery.find(params[:id])
   gallery.update(gallery_params)
   redirect_to gallery_path(gallery)
 end  
@@ -37,10 +33,10 @@ def destroy
   redirect_to root_path
 end  
 
+private 
 
-
-
-
-
+def gallery_params
+  params.require(:gallery).permit(:name)
+end
 
 end

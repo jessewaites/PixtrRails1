@@ -3,9 +3,29 @@ Pixtr::Application.routes.draw do
   root "galleries#index"
   
   resources :galleries do 
-    resources :images
-  end  
+    resources :images, shallow: true
+  end 
+
+  resources :images, only: [:show]
+
   end
+
+
+  # Gooses technique
+  # root "galleries#index"
+
+  # resources :galleries, only: [:index, :show] do 
+  #   resources :images, only: [:new, create]
+  #   end
+  # end  
+
+
+
+
+
+
+
+
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase

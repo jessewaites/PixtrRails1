@@ -11,10 +11,14 @@
 </div>
         <% @gallery.images.each do |image| %>
             <div>
-            <%= image.name %>
-            <%= image.description %>
+            <h2><%= image.name %></h2>
+            </div>
+            <div>
+            <p><%= image.description %></p>
             </div>
             <div>
             <img src="<%= image.url %>"> </img>
-            </div>           
+            </div>
+            <div>
+            <%= link_to "Permalink", image_path(image) %>           
         <% end %>
