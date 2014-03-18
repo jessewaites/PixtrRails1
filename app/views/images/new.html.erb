@@ -2,11 +2,11 @@
 
 <%= form_for([@gallery, @image]) do |form| %>
   <%= render "form_errors", target: @image %>
-  <%= f.label :name %>:
+  <%= form.label :name %>:
   <div><%= form.text_field :name %></div>
-  <%= f.label :description %>:
+  <%= form.label :description %>:
   <div><%= form.text_field :description %></div>
-  <%= f.label :url %>:
+  <%= form.label :url %>:
   <div><%= form.text_field :url %></div>
   <div><%= form.submit "Create Image" %></div>
 <% end %>
