@@ -1,14 +1,9 @@
+<h2>New Image</h2>
+
 <%= form_for([@gallery, @image]) do |form| %>
-<div>
-<%= form.text_field :name %>
-</div>
-<div>
-<%= form.text_field :description %>
-</div>
-<div>
-<%= form.text_field :url %>
-</div>
-<div>
-<%= form.submit "Create Image" %>
-</div>
+  <%= render "form_errors", target: @image %>
+  <div><%= form.text_field :name %></div>
+  <div><%= form.text_field :description %></div>
+  <div><%= form.text_field :url %></div>
+  <div><%= form.submit "Create Image" %></div>
 <% end %>

@@ -1,10 +1,16 @@
 Pixtr::Application.routes.draw do
 
-  root "galleries#index"
+  root "homes#show"
   
   resources :galleries do 
-    resources :images
+    resources :images, only: [:new, :create]
+  end
+
+  resources :images, except: [:new, :create] do
+    resources :comments, only: [:create]
   end  
+
+
   end
 
   # Example of named route that can be invoked with purchase_url(id: product.id)

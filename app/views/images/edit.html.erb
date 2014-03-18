@@ -1,1 +1,9 @@
-edit.html.erb
+<h1>Edit Images</h1>
+
+<%= form_for([@gallery, @image]) do |form| %>
+  <%= render "form_errors", target: @image %>
+  <div><%= form.text_field :name %></div>
+  <div><%= form.text_field :description %></div>
+  <div><%= form.text_field :url %></div>
+  <div><%= form.submit "Create Image" %></div>
+<% end %>

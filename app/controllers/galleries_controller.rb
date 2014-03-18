@@ -1,46 +1,49 @@
 class GalleriesController < ApplicationController
+  before_filter :authorize, except: [:show] 
 
-def index
-  @galleries = Gallery.all
-end  
+  def index
+    @galleries = current_user.galleries
+  end  
 
-def show
-  @gallery = Gallery.find(params[:id])
-end  
+  def show
+    @gallery = Gallery.find(params[:id])
+  end  
 
-def new
-  @gallery = Gallery.new
-end  
+  def new
+    @gallery = Gallery.new
+  end  
 
-def create
-  gallery = Gallery.create(gallery_params)
-  redirect_to gallery_path(gallery)
-end
+  def create
+    @gallery = current_user.galleries.new(gallery_params)
+    if @gallery.save
+      redirect_to @gallery
+    else  
+      render :new
+    end
+  end
+  
+  def edit
+    gallery = Gallery.find(gallery_params)
+  end
 
-def gallery_params
-  params.require(:gallery).permit(:name)
-end
+  def update
+    @gallery = Gallery.find(params[:id])
+    if gallery.update(gallery_params)
+    redirect_to gallery_path(gallery)
+    else  
+      render :edit
+    end
+  end  
 
-def edit
-  gallery = Gallery.find(gallery_params)
-end
+  def destroy
+    gallery = current_user.galleries.find(params[:id])
+    gallery.destroy
+    redirect_to root_path
+  end  
 
-def update
-  @gallery = Gallery.find(params[:id])
-  gallery.update(gallery_params)
-  redirect_to gallery_path(gallery)
-end  
+  private
 
-def destroy
-  gallery = Gallery.find(params[:id])
-  gallery.destroy
-  redirect_to root_path
-end  
-
-
-
-
-
-
-
+  def gallery_params
+    params.require(:gallery).permit(:name)
+  end
 end
