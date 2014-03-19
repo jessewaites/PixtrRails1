@@ -9,7 +9,12 @@ Pixtr::Application.routes.draw do
   resources :images, except: [:new, :create] do
     resources :comments, only: [:create]
   end  
+  
+  resources :groups, only: [:new, :index, :create, :show] 
 
+  
+  resources :users, only: [:index, :show] 
+  
 
   end
 

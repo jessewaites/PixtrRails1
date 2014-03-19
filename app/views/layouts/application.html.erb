@@ -8,7 +8,15 @@
   <link href='http://fonts.googleapis.com/css?family=Revalia|Bubbler+One' rel='stylesheet' type='text/css'>
 </head>
 <body>
+  <h1><%= link_to 'PIXTR', root_path %></h1>
+
   <% if signed_in? %>
+  <nav>
+    <ul>
+      <li><%= link_to 'Galleries', galleries_path %>
+      <li><%= link_to 'Groups', groups_path %>
+    </ul>
+  </nav>
   Signed in as: <%= current_user.email %>
   <%= link_to 'Sign out', sign_out_path, :method => :delete %>
   <% else %>

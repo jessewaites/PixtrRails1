@@ -1,0 +1,11 @@
+<%= form_for @group do |form| %>
+  <div>
+    <%= form.text_field :name, placeholder: "Name" %>
+  </div>
+  <div>
+    <%= form.text_field :description, placeholder: "Description" %>
+  </div>
+  <div>
+    <%= form.submit "Create Group" %>
+  </div>  
+<% end %>
