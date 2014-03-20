@@ -7,6 +7,7 @@ class GroupsController < ApplicationController
 
   def show
     @group = current_user.groups
+    @images = @group.images
   end  
 
   def new

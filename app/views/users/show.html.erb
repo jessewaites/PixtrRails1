@@ -1,8 +1,19 @@
 <h3>User Profile</h3>
-<p><%= @user.email %></p> created their account on
+<p><%= @user.email %> created their account on
 <%= @user.created_at.strftime("%B %d, %Y") %></p>
 
-<div class="thumbs"
+<% if current_user ==  @user %>
+  <p>You are already following <%= @user.email %></p>
+  <%= button_to "Unfollow #{@user.email}", 
+  unfollow_user_path(@user), method: :delete %>
+<% else %> 
+  <%= button_to "Follow", follow_user_path(@user) %>
+<% end %>
+
+<div class="thumbs">
 <%= render @images %>
 </div>
-
+<h3>Following Users:</h3>
+<% @user.followed_users.each do |user| %>
+<p><%= user.email %></p>
+<% end %>
