@@ -4,6 +4,8 @@ class Comment < ActiveRecord::Base
 
   validates :body, presence: true
   validates :user, presence: true
+  validates :target, presence: true
+
 
   def self.recent
     order(created_at: :desc)

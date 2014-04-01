@@ -2,13 +2,15 @@
 <p><%= @user.email %> created their account on
 <%= @user.created_at.strftime("%B %d, %Y") %></p>
 
-<% if current_user ==  @user %>
-  <p>You are already following <%= @user.email %></p>
+<% if current_user !=  @user %>
+  <% if current_user.following? @user %>
   <%= button_to "Unfollow #{@user.email}", 
-  unfollow_user_path(@user), method: :delete %>
-<% else %> 
-  <%= button_to "Follow", follow_user_path(@user) %>
+  unfollow_user_path(@user), method: :delete, class: "button radius" %>
+  <% else %> 
+  <%= button_to "Follow", follow_user_path(@user), class: "button radius" %>
 <% end %>
+<% end %>
+
 
 <div class="thumbs">
 <%= render @images %>
@@ -17,3 +19,6 @@
 <% @user.followed_users.each do |user| %>
 <p><%= user.email %></p>
 <% end %>
+
+Number of liked images:
+<p><%= @user.likes.count %></p>

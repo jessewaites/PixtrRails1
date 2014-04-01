@@ -4,12 +4,18 @@
     image = Image.find(params[:image_id])
     comment = image.comments.new(comment_params)
     if comment.save
-      redirect_to image
+      current_user.notify_followers(comment, image, "CommentActivity")
+      redirect_to image, notice: "Commented Successfully"
     else 
       redirect_to image, alert: 
       "Can not comment with an empty comment"
     end    
   end
+
+  def destroy
+    comment = current_user.comments.find(params:[id])
+    comment.destroy
+  end  
 
 
   private

@@ -1,13 +1,13 @@
 class GroupsController < ApplicationController
-
+  before_action :authorize, except: [:show]
 
   def index
-    @group = Group.all
+    @groups = Group.all
   end
 
   def show
     @group = current_user.groups
-    @images = @group.images
+    @images = @group.images.includes(gallery: [:user])
   end  
 
   def new

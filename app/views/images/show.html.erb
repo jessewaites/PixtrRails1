@@ -13,10 +13,23 @@
     <%= link_to "Delete Image", @image, method: :delete, confirm: "Are you sure you want to delete this image?" %>
   <% end %>
 
+
   <%= form_for([@image, @comment]) do |form| %>
   <%= form.text_area :body %>
   <%= form.submit "Comment" %>
   <% end %>
+
+ <div id="likes_count">
+    <%= pluralize(@image.likes.count, "Like") %>
+ </div>
+
+<% if current_user.likes? @image %>
+  <%= button_to "Unlike Image", unlike_image_path(@image), method: :delete, remote: true, id: 'unlike_js' %>
+<% else %>
+  <%= button_to "Like Image", like_image_path(@image), remote: true, id: 'like_js' %>
+<% end %>
+
+
 
   <%= render @comments %>
   <%= paginate @comments %>

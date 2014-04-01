@@ -1,11 +1,19 @@
+<div class="row collapse">
+<div class="row collapse">
+  <div class="small-9 columns">
 <%= form_for @group do |form| %>
-  <div>
+    <%= form.label :name, class: "right inline", title: "Name", data: {tooltip: true } %>
     <%= form.text_field :name, placeholder: "Name" %>
   </div>
   <div>
+    <%= form.label :description, class: "right inline", title: "Description", data: {tooltip: true } %>
     <%= form.text_field :description, placeholder: "Description" %>
-  </div>
-  <div>
+
     <%= form.submit "Create Group" %>
   </div>  
+ 
 <% end %>
+
+
+
+

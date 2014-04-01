@@ -1,0 +1,7 @@
+<% if current_user.joined?(@group) %>   
+    <p>You are a member.</p>
+    <%= button_to "Leave Group", leave_group_path(@group), class: "button radius", remote: true, method: :delete %>
+  <% else %>
+    <p>You are not a member.</p>
+    <%= button_to "Join Group", join_group_path(@group), class: "button radius", remote: true %>
+<% end %>

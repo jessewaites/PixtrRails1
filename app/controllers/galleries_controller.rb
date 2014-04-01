@@ -7,15 +7,17 @@ class GalleriesController < ApplicationController
 
   def show
     @gallery = Gallery.find(params[:id])
+    @images = @gallery.images.includes(gallery: [:user])
   end  
 
   def new
     @gallery = Gallery.new
-  end  
+  end
 
   def create
     @gallery = current_user.galleries.new(gallery_params)
     if @gallery.save
+      current_user.notify_followers(@gallery, @gallery, "GalleryActivity")
       redirect_to @gallery
     else  
       render :new

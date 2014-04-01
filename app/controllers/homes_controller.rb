@@ -1,4 +1,13 @@
-class HomesController < ApplicationController 
+class HomesController < ApplicationController
+  before_action :redirect_to_dashboard, if: :signed_in?
+
   def show
   end
-end    
+
+  private
+
+  def redirect_to_dashboard
+      redirect_to dashboard_path
+  end  
+
+end

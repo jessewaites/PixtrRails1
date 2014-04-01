@@ -27,5 +27,25 @@ Pixtr::Application.configure do
   # number of complex assets.
   config.assets.debug = true
 
-  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  config.action_mailer.delivery_method = :sendmail
+# Defaults to:
+# config.action_mailer.sendmail_settings = {
+#   location: '/usr/sbin/sendmail',
+#   arguments: '-i -t'
+# }
+config.action_mailer.perform_deliveries = true
+config.action_mailer.raise_delivery_errors = true
+config.action_mailer.default_options = {from: 'admin@pixtr.com'}
+
+config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+
+config.after_initialize do
+  Bullet.enable = true
+  Bullet.alert = true
+  Bullet.bullet_logger = true
+  Bullet.console = true
+  Bullet.rails_logger = true
+  Bullet.add_footer = true
+  end
+  
 end

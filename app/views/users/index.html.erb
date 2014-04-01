@@ -1,4 +1,5 @@
 <h2>Pixtr Users List</h2>
 <% @user.each do |user| %>
-  <%= user.email %>
+  <p><%= link_to user.email, user %></p>
 <% end %>
+
